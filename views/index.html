@@ -1,58 +1,63 @@
-<!-- This is a static file -->
-<!-- served from your routes in server.js -->
+<!doctype html>
+<!--[if IE 9 ]><html class="ie9" lang="en"><![endif]-->
+<!--[if gt IE 9]><!--><html lang="en"><!--<![endif]-->
 
-<!-- You might want to try something fancier: -->
-<!-- html/nunjucks docs: https://mozilla.github.io/nunjucks/ -->
-<!-- pug: https://pugjs.org/ -->
-<!-- haml: http://haml.info/ -->
-<!-- hbs(handlebars): http://handlebarsjs.com/ -->
+<head>
 
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>Welcome to Glitch!</title>
-    <meta name="description" content="A cool thing made with Glitch">
-    <link id="favicon" rel="icon" href="https://glitch.com/edit/favicon-app.ico" type="image/x-icon">
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8">
 
-    <!-- import the webpage's stylesheet -->
-    <link rel="stylesheet" href="/style.css">
+<title>HTML Starter</title>
+
+<meta name="description" content="_______________INSERT_DECRIPTION_HERE_______________">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- CSS -->
+
+<link rel="stylesheet" href="css/.css">
+<link rel="stylesheet" href="https://intercom.github.io/developer-hub/public/css/style-nav.min.css?v4">
+<link rel="stylesheet" href="https://intercom.github.io/developer-hub/public/css/style-v3-beta.min.css?v3">
+
+</head>
+
+<!-- Page Content -->
+  
+<body>  
     
-    <!-- import the webpage's client-side javascript file -->
-    <script src="/client.js" defer></script>
-  </head>
-  <body>
-    <header>
-      <h1>
-        A Dream of the Future
-      </h1>
-    </header>
+<p id="init"></p>
+<p id="submit"></p>
+<p id="configure"></p>
+<p id="sheet"></p>
 
-    <main>
-      <p class="bold">Oh hi,</p>
-      
-      <p>Tell me your hopes and dreams:</p>
-      
-      <form>
-        <input name="dream" type="text" maxlength="100" placeholder="Dreams!" aria-labelledby="submit-dream">
-        <button type="submit" id="submit-dream">Submit Dream</button>
-      </form>
-      
-      <section class="dreams">
-        <ul id="dreams"></ul>
-      </section>
-    </main>
+  
+<!-- JavaScript -->
 
-    <footer>
-      Made with <a href="https://glitch.com">Glitch</a>!
-    </footer>
+<script src="js/functions.js"></script>
 
-    <!-- include the Glitch button to show what the webpage is about and
-          to make it easier for folks to view source and remix -->
-    <div class="glitchButton" style="position:fixed;top:20px;right:20px;"></div>
-    <script src="https://button.glitch.me/button.js"></script>
+<script>
+document.getElementById("init").innerHTML = 
+"INITIALIZE URL:<br>" + window.location.href+"initialize";
 
-  </body>
+document.getElementById("submit").innerHTML = 
+"SUBMIT URL:<br>" + window.location.href+"submit";
+  
+document.getElementById("configure").innerHTML = 
+"CONFIGURE URL:<br>" + window.location.href+"configure";
+  
+document.getElementById("sheet").innerHTML = 
+"SUBMIT SHEET URL:<br>" + window.location.href+"submit-sheet";
+</script>
+  
+<script>
+  var WS_ID = "fyq3wodw";
+
+ window.intercomSettings = {
+    app_id: WS_ID
+  };
+</script>
+<script>(function(){var w=window;var ic=w.Intercom;if(typeof ic==="function"){ic('reattach_activator');ic('update',intercomSettings);}else{var d=document;var i=function(){i.c(arguments)};i.q=[];i.c=function(args){i.q.push(args)};w.Intercom=i;function l(){var s=d.createElement('script');s.type='text/javascript';s.async=true;s.src='https://widget.intercom.io/widget/APP_ID';var x=d.getElementsByTagName('script')[0];x.parentNode.insertBefore(s,x);}if(w.attachEvent){w.attachEvent('onload',l);}else{w.addEventListener('load',l,false);}}})()</script>
+
+
+
+</body>
+
 </html>
