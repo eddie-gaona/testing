@@ -36,3 +36,17 @@ app.post("/initialize", (request, response) => {
     },
   });
 });
+
+app.post("/submit", (request, response) => {  
+  const body = request.body;  
+  response.send({
+    canvas: {
+      content: {
+        components: [
+          { type: "text", text: "Someone just clicked something AND you just created a new component!", 
+           style: "header", align: "center" },
+        ], 
+      },
+    },
+  });
+});
