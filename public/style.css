@@ -53,13 +53,14 @@
 /* Styles */
 
 body {
-  font-family: "IntercomText", "IntercomGrot", "Benton Sans", "Helvetica Neue", helvetica, arial, sans-serif;
+  font-family: IntercomText, IntercomGrot, "Benton Sans", "Helvetica Neue", helvetica, arial, sans-serif;
   margin: 2em;
 }
 
 h1 {
-  font-family: "IntercomGrot";
-  color: #373fff;
+  font-family: IntercomGrot;
+  font-size: 16px;
+  margin-bottom: none;
 }
 
 .bold {
@@ -67,7 +68,7 @@ h1 {
 }
 
 p {
-  font-family: "IntercomText";
+  font-family: IntercomText;
   max-width: 600px;
 }
 
