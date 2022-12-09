@@ -29,19 +29,6 @@ app.post("/initialize", (request, response) => {
     canvas: {
       content: {
         components: [
-          { type: "button", label: "Click Me!", style: "primary", id: "url_button", action: {type: "submit"} },
-        ],
-      },
-    },
-  });
-});
-
-app.post("/submit", (request, response) => {
-  const body = request.body;
-  response.send({
-    canvas: {
-      content: {
-        components: [
                       {
                         "type": "text",
                         "text": "*Create a ticket*",
@@ -135,5 +122,29 @@ app.post("/submit", (request, response) => {
                   ],
       },
     },
+  });
+});
+
+app.post("/submit", (request, response) => {
+  const body = request.body;
+  response.send({
+    canvas: {
+      content: {
+        components: [
+          { type: "text", text: "Ticket Submitted",
+           style: "header", align: "center" },
+        ],
+              },
+          },
+      });
+  const button = document.getElementById('submit-issue-form');
+  button.addEventListener('click', function () {
+    fetch('https://whicheverapi.com/path/id')
+        .then(function (result) {
+            console.log(result);
+        })
+        .catch(function (err) {
+            console.error(err);
+        });
   });
 });
