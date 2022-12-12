@@ -11,17 +11,19 @@ const inputBody = JSON.stringify({
     }
   }
 });
-const options = {
+var options = {
   hostname: 'amplitude.zendesk.com',
   path: '/api/v2/tickets',
   method: 'POST',
   headers: {
     'Content-Type': 'application/json',
     'Accept': '*/*',
-    'body': inputBody,
     'Authorization': "Basic ZWRkaWUuZ2FvbmFAYW1wbGl0dWRlLmNvbS90b2tlbjo3QVdmdDBqZHRFZ1ByU1hIajVpTFNwS252NmwyYzVibXgycTVyY1FQ"
-  }
-};
+  },
+  body: JSON.stringify({ ticket: {comment: {
+      value: "<Error: Too many levels of nesting to fake this schema>"
+    }}
+})};
 
 //Zendesk API Create a Ticket
 const createTicket = () => {
