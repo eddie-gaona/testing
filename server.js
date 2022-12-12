@@ -9,7 +9,15 @@ const options = {
   method: 'POST',
   headers: {
     'Content-Type': 'application/json',
+    'Authorization': "Basic ZWRkaWUuZ2FvbmFAYW1wbGl0dWRlLmNvbS90b2tlbjo3QVdmdDBqZHRFZ1ByU1hIajVpTFNwS252NmwyYzVibXgycTVyY1FQ"
   },
+  body: {
+  "ticket": {
+    "comment": {
+      "value": "My First Ticket from Intercom -> Zendesk"
+    }
+  }
+}
 };
 
 //Zendesk API Create a Ticket
