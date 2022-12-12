@@ -2,6 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
 
+app.use(logger)
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(express.static(__dirname));
@@ -14,6 +15,11 @@ app.use(logger)
 app.get('/', function(request, response) {
   response.sendFile(__dirname + '/views/index.html');
 });
+
+function logger(request, response, next) {
+  console.log("This is it")
+  next()
+}
 
 const listener = app.listen(process.env.PORT, () => {
   console.log('Your app is listening on port ' + listener.address().port);
