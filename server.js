@@ -7,7 +7,7 @@ app.use(bodyParser.json());
 app.use(express.static(__dirname));
 
 // http://expressjs.com/en/starter/static-files.html
-app.use(express.static('public'));
+//app.use(express.static('public'));
 app.use(logger)
 
 // http://expressjs.com/en/starter/basic-routing.html
