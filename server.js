@@ -8,13 +8,13 @@ const inputBody = JSON.stringify({
       "value": "<Error: Too many levels of nesting to fake this schema>"
     }
   }
-}})
+}});
 const options = {
   hostname: 'amplitude.zendesk.com',
   path: '/api/v2/tickets',
   method: 'POST',
   headers: {
-    'Content-Type': '*/*',
+    'Content-Type': 'application/json',
     'Accept': '*/*',
     'Authorization': "Basic ZWRkaWUuZ2FvbmFAYW1wbGl0dWRlLmNvbS90b2tlbjo3QVdmdDBqZHRFZ1ByU1hIajVpTFNwS252NmwyYzVibXgycTVyY1FQ"
   },
@@ -97,6 +97,12 @@ app.post("/initialize", (request, response) => {
     },
   });
 });
+
+//Delete
+
+const request = new XMLHttpRequest(); 
+
+//Delete ends
 
 app.post("/submit", (request, response) => {
   createTicket();
