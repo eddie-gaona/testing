@@ -25,6 +25,7 @@ const listener = app.listen(process.env.PORT, () => {
 
 app.post("/initialize", (request, response) => {
   const body = request.body;
+  console.log(body['type'])
   response.send({
     canvas: {
       content: {
