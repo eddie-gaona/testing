@@ -123,12 +123,15 @@ app.post("/initialize", (request, response) => {
       },
     },
   });
-  var fullUrl = response.protocol + '://' + response.url;
+  var fullUrl = request.protocol + '://' + request.hostname + request.originalUrl;
   console.log(fullUrl)
 });
 
 app.post("/submit", (request, response) => {
   console.log("button clicked")
+  var fullUrl = request.protocol + '://' + request.hostname + request.originalUrl;
+  console.log(fullUrl)
+  console.log(response.path);
   const body = request.body;
   response.send({
     canvas: {
