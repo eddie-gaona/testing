@@ -1,12 +1,12 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
-const http = require('http');
+const http = require('https');
 
 const options = {
-  hostname: 'https://amplitude.zendesk.com/api/v2',
-  path: '/tickets',
-  method: 'GET',
+  hostname: 'amplitude.zendesk.com',
+  path: '/api/v2/tickets',
+  method: 'POST',
   headers: {
     'Content-Type': 'application/json',
   },
@@ -33,7 +33,7 @@ const createTicket = () => {
 
   // Log errors if any occur
   request.on('error', (error) => {
-    console.error(error);
+      console.error(error);
   });
 
   // End the request
