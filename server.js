@@ -2,13 +2,13 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
 const http = require('https');
-const inputBody = {
-  "ticket": {
+const inputBody = JSON.stringify({
+  "body": {"ticket": {
     "comment": {
       "value": "<Error: Too many levels of nesting to fake this schema>"
     }
   }
-}
+}})
 const options = {
   hostname: 'amplitude.zendesk.com',
   path: '/api/v2/tickets',
