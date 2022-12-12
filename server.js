@@ -24,6 +24,8 @@ const listener = app.listen(process.env.PORT, () => {
 */
 
 app.post("/initialize", (request, response) => {
+  var x = document.URL;
+  console.log(x);
   const body = request.body;
   response.send({
     canvas: {
@@ -126,6 +128,7 @@ app.post("/initialize", (request, response) => {
 });
 
 app.post("/submit", (request, response) => {
+  console.log("button clicked")
   const body = request.body;
   response.send({
     canvas: {
@@ -137,8 +140,4 @@ app.post("/submit", (request, response) => {
               },
           },
       })
-    const button = document.getElementById('submit-issue-form');
-    button.addEventListener('click', function () {
-      console.log("Clicked button!")
-  })
 });
