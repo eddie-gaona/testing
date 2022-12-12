@@ -24,8 +24,9 @@ const listener = app.listen(process.env.PORT, () => {
 */
 
 app.post("/initialize", (request, response) => {
-  const body = request.body;
-  console.log(body['type'])
+  const body = request.body
+  console.log(body)
+  //console.log(body["conversation"]["id"])
   response.send({
     canvas: {
       content: {
@@ -124,8 +125,6 @@ app.post("/initialize", (request, response) => {
       },
     },
   });
-  var fullUrl = request.protocol + '://' + request.hostname + request.originalUrl;
-  console.log(fullUrl)
 });
 
 app.post("/submit", (request, response) => {
