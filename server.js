@@ -1,25 +1,19 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const router = express.Router();
 const app = express();
 
-app.use(logger)
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(express.static(__dirname));
 
 // http://expressjs.com/en/starter/static-files.html
 //app.use(express.static('public'));
-app.use(logger)
 
 // http://expressjs.com/en/starter/basic-routing.html
 app.get('/', function(request, response) {
   response.sendFile(__dirname + '/views/index.html');
 });
-
-function logger(request, response, next) {
-  console.log("This is it")
-  next()
-}
 
 const listener = app.listen(process.env.PORT, () => {
   console.log('Your app is listening on port ' + listener.address().port);
@@ -29,11 +23,6 @@ const listener = app.listen(process.env.PORT, () => {
   This is an endpoint that Intercom will POST HTTP request when the card needs to be initialized.
   This can happen when your teammate inserts the app into the inbox, or a new conversation is viewed.
 */
-
-function logger(req, res, next) {
-  console.log("Please work within Intercom")
-  next()
-}
 
 app.post("/initialize", (request, response) => {
   const body = request.body;
