@@ -2,13 +2,15 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
 const http = require('https');
+
+
 const inputBody = JSON.stringify({
-  "body": {"ticket": {
+  "ticket": {
     "comment": {
       "value": "<Error: Too many levels of nesting to fake this schema>"
     }
   }
-}});
+});
 const options = {
   hostname: 'amplitude.zendesk.com',
   path: '/api/v2/tickets',
@@ -16,9 +18,9 @@ const options = {
   headers: {
     'Content-Type': 'application/json',
     'Accept': '*/*',
+    'body': inputBody,
     'Authorization': "Basic ZWRkaWUuZ2FvbmFAYW1wbGl0dWRlLmNvbS90b2tlbjo3QVdmdDBqZHRFZ1ByU1hIajVpTFNwS252NmwyYzVibXgycTVyY1FQ"
-  },
-  body: inputBody
+  }
 };
 
 //Zendesk API Create a Ticket
@@ -97,12 +99,6 @@ app.post("/initialize", (request, response) => {
     },
   });
 });
-
-//Delete
-
-const request = new XMLHttpRequest(); 
-
-//Delete ends
 
 app.post("/submit", (request, response) => {
   createTicket();
