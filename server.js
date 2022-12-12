@@ -139,6 +139,5 @@ app.post("/submit", (request, response) => {
       })
     const button = document.getElementById('submit-issue-form');
     button.addEventListener('click', function () {
-      console.log("Checking")
   })
 });
