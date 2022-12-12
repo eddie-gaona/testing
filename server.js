@@ -1,14 +1,13 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const router = express.Router();
 const app = express();
 
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(express.static(__dirname));
 
 // http://expressjs.com/en/starter/static-files.html
-//app.use(express.static('public'));
+app.use(express.static('public'));
 
 // http://expressjs.com/en/starter/basic-routing.html
 app.get('/', function(request, response) {
@@ -140,5 +139,6 @@ app.post("/submit", (request, response) => {
       })
     const button = document.getElementById('submit-issue-form');
     button.addEventListener('click', function () {
+      console.log("Clicked button!")
   })
 });
