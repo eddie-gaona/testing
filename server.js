@@ -7,17 +7,16 @@ const options = {
   hostname: 'amplitude.zendesk.com',
   path: '/api/v2/tickets',
   method: 'POST',
+  body: {
+    "ticket": {
+      "comment": {
+        "value": "My first ticket"
+      }
+    }},
   headers: {
     'Content-Type': 'application/json',
     'Authorization': "Basic ZWRkaWUuZ2FvbmFAYW1wbGl0dWRlLmNvbS90b2tlbjo3QVdmdDBqZHRFZ1ByU1hIajVpTFNwS252NmwyYzVibXgycTVyY1FQ"
   },
-  body: {
-  "ticket": {
-    "comment": {
-      "value": "My First Ticket from Intercom -> Zendesk"
-    }
-  }
-}
 };
 
 //Zendesk API Create a Ticket
