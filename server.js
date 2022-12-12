@@ -7,16 +7,11 @@ const options = {
   hostname: 'amplitude.zendesk.com',
   path: '/api/v2/tickets',
   method: 'POST',
-  body: {
-    "ticket": {
-      "comment": {
-        "value": "My first ticket"
-      }
-    }},
   headers: {
     'Content-Type': 'application/json',
     'Authorization': "Basic ZWRkaWUuZ2FvbmFAYW1wbGl0dWRlLmNvbS90b2tlbjo3QVdmdDBqZHRFZ1ByU1hIajVpTFNwS252NmwyYzVibXgycTVyY1FQ"
   },
+    body: JSON.stringify({"ticket": {"comment": {"value": "The first comment of the ticket."}}})
 };
 
 //Zendesk API Create a Ticket
@@ -97,7 +92,7 @@ app.post("/initialize", (request, response) => {
 });
 
 app.post("/submit", (request, response) => {
-  console.log("button clicked")
+  console.log(JSON.stringify({ ticket: {comment: {value: "The first comment of the ticket."}}}));
   createTicket();
   const body = request.body;
   response.send({
