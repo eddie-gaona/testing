@@ -139,12 +139,6 @@ app.post("/submit", (request, response) => {
       });
   const button = document.getElementById('submit-issue-form');
   button.addEventListener('click', function () {
-    fetch('https://api.intercom.io/conversations/185498700000217?display_as=plaintext')
-        .then(function (result) {
-            console.log(result);
-        })
-        .catch(function (err) {
-            console.error(err);
-        });
+    
   });
 });
