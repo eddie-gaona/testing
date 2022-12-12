@@ -1,6 +1,44 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
+const http = require('http');
+
+const options = {
+  hostname: 'https://amplitude.zendesk.com/api/v2',
+  path: '/tickets',
+  method: 'GET',
+  headers: {
+    'Content-Type': 'application/json',
+  },
+};
+
+//Zendesk API Create a Ticket
+const createTicket = () => {
+  let data = '';
+
+  const request = http.request(options, (response) => {
+    // Set the encoding, so we don't get log to the console a bunch of gibberish binary data
+    response.setEncoding('utf8');
+
+    // As data starts streaming in, add each chunk to "data"
+    response.on('data', (chunk) => {
+      data += chunk;
+    });
+
+    // The whole response has been received. Print out the result.
+    response.on('end', () => {
+      console.log(data);
+    });
+  });
+
+  // Log errors if any occur
+  request.on('error', (error) => {
+    console.error(error);
+  });
+
+  // End the request
+  request.end();
+};
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -33,89 +71,13 @@ app.post("/initialize", (request, response) => {
         components: [
                       {
                         "type": "text",
-                        "text": "*Create a ticket*",
+                        "text": "*Create a Zendesk Ticket*",
                         "style": "header"
-                      },
-                      {
-                        "type": "input",
-                        "id": "title",
-                        "label": "Title",
-                        "placeholder": "Enter a title for your issue..."
-                      },
-                      {
-                        "type": "input",
-                        "id": "Email",
-                        "label": "Customer Email",
-                        "placeholder": "Enter an email for your issue..."
-                      },
-                      {
-                        "type": "textarea",
-                        "id": "description",
-                        "label": "Description",
-                        "placeholder": "Enter a description of the issue..."
-                      },
-                      {
-                        "type": "dropdown",
-                        "id": "label",
-                        "label": "Request Type",
-                        "options": [
-                          {
-                            "type": "option",
-                            "id": "bug",
-                            "text": "Bug"
-                          },
-                          {
-                            "type": "option",
-                            "id": "bug-critical",
-                            "text": "Bug Critical Issue"
-                          },
-                          {
-                            "type": "option",
-                            "id": "feedback",
-                            "text": "Feedback"
-                          },
-                          {
-                            "type": "option",
-                            "id": "troubleshooting",
-                            "text": "Troubleshooting"
-                          },
-                          {
-                            "type": "option",
-                            "id": "conceptual",
-                            "text": "Conceptual"
-                          }
-                        ]
-                      },
-                      {
-                        "type": "single-select",
-                        "id": "priority",
-                        "label": "Priority",
-                        "options": [
-                          {
-                            "type": "option",
-                            "id": "low",
-                            "text": "Low"
-                          },
-                          {
-                            "type": "option",
-                            "id": "medium",
-                            "text": "Medium"
-                          },
-                          {
-                            "type": "option",
-                            "id": "high",
-                            "text": "High"
-                          }
-                        ]
-                      },
-                      {
-                        "type": "spacer",
-                        "size": "s"
                       },
                       {
                         "type": "button",
                         "id": "submit-issue-form",
-                        "label": "Create issue",
+                        "label": "Create a Zendesk Ticket",
                         "style": "primary",
                         "action": {
                           "type": "submit"
@@ -129,8 +91,7 @@ app.post("/initialize", (request, response) => {
 
 app.post("/submit", (request, response) => {
   console.log("button clicked")
-  var fullUrl = request.protocol + '://' + request.hostname + request.originalUrl;
-  console.log(fullUrl)
+  createTicket();
   const body = request.body;
   response.send({
     canvas: {
@@ -142,5 +103,4 @@ app.post("/submit", (request, response) => {
               },
           },
       })
-  console.log(response.path);
 });
