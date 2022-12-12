@@ -13,7 +13,7 @@ const inputBody = JSON.stringify({
 });
 var options = {
   hostname: 'amplitude.zendesk.com',
-  path: '/api/v2/tickets/count.json',
+  path: '/api/v2/tickets',
   method: 'POST',
   headers: {
     'Content-Type': 'application/json',
@@ -29,7 +29,13 @@ var options = {
 
 //Zendesk API Create a Ticket
 const createTicket = () => {
-  let data = '';
+  let data = JSON.stringify({
+  "ticket": {
+    "comment": {
+      "value": "<Error: Too many levels of nesting to fake this schema>"
+    }
+  }
+});
 
   const request = http.request(options, (response) => {
     // Set the encoding, so we don't get log to the console a bunch of gibberish binary data
