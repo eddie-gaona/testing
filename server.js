@@ -57,7 +57,7 @@ const createTicket = () => {
 
 
 //const URL = 'https://amplitude.zendesk.com/api/v2/tickets'
-
+//STARTS HERE
 var url = 'https://amplitude.zendesk.com/api/v2/tickets.json';
 const auth = "Basic ZWRkaWUuZ2FvbmFAYW1wbGl0dWRlLmNvbS90b2tlbjo3QVdmdDBqZHRFZ1ByU1hIajVpTFNwS252NmwyYzVibXgycTVyY1FQ"
 const request = https.request(url, (response) => {
@@ -77,6 +77,8 @@ request.on('error', (error) => {
 });
   
 request.end() 
+
+//ENDS HERE
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -98,10 +100,6 @@ const listener = app.listen(process.env.PORT, () => {
   This is an endpoint that Intercom will POST HTTP request when the card needs to be initialized.
   This can happen when your teammate inserts the app into the inbox, or a new conversation is viewed.
 */
-
-app.post("https://amplitude.zendesk.com/api/v2/tickets.json", function(request, response) {
-  
-})
 
 app.post("/initialize", (request, response) => {
   const body = request.body
