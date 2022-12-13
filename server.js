@@ -1,7 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
-const http = require('https');
+const https = require('https');
 
 
 const inputBody = JSON.stringify({
@@ -20,24 +20,18 @@ var options = {
     'Accept': '*/*',
     'Authorization': "Basic ZWRkaWUuZ2FvbmFAYW1wbGl0dWRlLmNvbS90b2tlbjo3QVdmdDBqZHRFZ1ByU1hIajVpTFNwS252NmwyYzVibXgycTVyY1FQ"
   },
-  body: { 
+  body: JSON.stringify({ 
     "ticket": {
       "comment": {
         "value": "<Error: Too many levels of nesting to fake this schema>"
     }}
-}};
+})};
 
 //Zendesk API Create a Ticket
 const createTicket = () => {
-  let data = JSON.stringify({
-  "ticket": {
-    "comment": {
-      "value": "<Error: Too many levels of nesting to fake this schema>"
-    }
-  }
-});
+  let data = ''
 
-  const request = http.request(options, (response) => {
+  const request = https.request(options, (response) => {
     // Set the encoding, so we don't get log to the console a bunch of gibberish binary data
     response.setEncoding('utf8');
 
@@ -60,6 +54,9 @@ const createTicket = () => {
   // End the request
   request.end();
 };
+
+
+const URL = 'https://amplitude.zendesk.com/api/v2/tickets'
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
