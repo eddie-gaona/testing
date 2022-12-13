@@ -11,22 +11,22 @@ app.use(express.static(__dirname));
 app.use(express.static('public'));
 
 const inputBody = JSON.stringify({
-  ticket: {
-    comment: {
-      value: "<Error: Too many levels of nesting to fake this schema>"
+  "ticket": {
+    "comment": {
+      "body": "Please submit and create a ticket"
     }
   }
 });
 var options = {
   hostname: 'amplitude.zendesk.com',
   path: '/api/v2/tickets',
+  html_body: inputBody,
   method: 'POST',
   headers: {
     'Content-Type': 'application/json',
     'Accept': '*/*',
     'Authorization': "Basic ZWRkaWUuZ2FvbmFAYW1wbGl0dWRlLmNvbS90b2tlbjo3QVdmdDBqZHRFZ1ByU1hIajVpTFNwS252NmwyYzVibXgycTVyY1FQ"
-  },
-  body: inputBody
+  }
 };
 
 console.log(inputBody)
