@@ -56,7 +56,28 @@ const createTicket = () => {
 };
 
 
-const URL = 'https://amplitude.zendesk.com/api/v2/tickets'
+//const URL = 'https://amplitude.zendesk.com/api/v2/tickets'
+
+var urlOps = {
+  hostname: 'https://amplitude.zendesk.com/api/v2/tickets'
+}
+const request = https.request(urlOps, (response) => {
+    let data = '';
+    response.on('data', (chunk) => {
+        data = data + chunk.toString();
+    });
+  
+    response.on('end', () => {
+        const body = JSON.parse(data);
+        console.log(body);
+    });
+})
+  
+request.on('error', (error) => {
+    console.log('An error', error);
+});
+  
+request.end() 
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
