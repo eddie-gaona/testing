@@ -12,13 +12,13 @@ app.use(express.static('public'));
 
 //Zendesk API Create a Ticket
 const createTicket = () => {
-  var inputBody = JSON.stringify({
+  var inputBody = {
   "ticket": {
     "comment": {
       "value": "Please submit and create a ticket"
     }
   }
-});
+};
 var options = {
   hostname: 'amplitude.zendesk.com',
   path: '/api/v2/tickets',
@@ -28,7 +28,7 @@ var options = {
     'Accept': '*/*',
     'Authorization': "Basic ZWRkaWUuZ2FvbmFAYW1wbGl0dWRlLmNvbS90b2tlbjo3QVdmdDBqZHRFZ1ByU1hIajVpTFNwS252NmwyYzVibXgycTVyY1FQ"
   },
-  body: inputBody
+  //body: inputBody
 };
 
 console.log(inputBody)
@@ -53,7 +53,7 @@ console.log(inputBody)
   request.on('error', (error) => {
       console.error(error);
   });
-
+  request.write(JSON.stringify(inputBody));
   // End the request
   request.end();
 };
