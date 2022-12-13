@@ -10,7 +10,9 @@ app.use(express.static(__dirname));
 // http://expressjs.com/en/starter/static-files.html
 app.use(express.static('public'));
 
-const inputBody = JSON.stringify({
+//Zendesk API Create a Ticket
+const createTicket = () => {
+  var inputBody = JSON.stringify({
   "ticket": {
     "comment": {
       "body": "Please submit and create a ticket"
@@ -20,23 +22,21 @@ const inputBody = JSON.stringify({
 var options = {
   hostname: 'amplitude.zendesk.com',
   path: '/api/v2/tickets',
-  html_body: inputBody,
   method: 'POST',
   headers: {
     'Content-Type': 'application/json',
     'Accept': '*/*',
     'Authorization': "Basic ZWRkaWUuZ2FvbmFAYW1wbGl0dWRlLmNvbS90b2tlbjo3QVdmdDBqZHRFZ1ByU1hIajVpTFNwS252NmwyYzVibXgycTVyY1FQ"
-  }
+  },
+  body: inputBody
 };
 
 console.log(inputBody)
-//Zendesk API Create a Ticket
-const createTicket = () => {
   let data = '';
 
   const request = https.request(options, (response) => {
     // Set the encoding, so we don't get log to the console a bunch of gibberish binary data
-    //response.setEncoding('utf8');
+    response.setEncoding('utf8');
 
     // As data starts streaming in, add each chunk to "data"
     response.on('data', (chunk) => {
