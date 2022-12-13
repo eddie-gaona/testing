@@ -27,8 +27,7 @@ var options = {
     'Content-Type': 'application/json',
     'Accept': '*/*',
     'Authorization': "Basic ZWRkaWUuZ2FvbmFAYW1wbGl0dWRlLmNvbS90b2tlbjo3QVdmdDBqZHRFZ1ByU1hIajVpTFNwS252NmwyYzVibXgycTVyY1FQ"
-  },
-  //body: inputBody
+  }
 };
 
 console.log(inputBody)
@@ -57,31 +56,6 @@ console.log(inputBody)
   // End the request
   request.end();
 };
-
-
-//const URL = 'https://amplitude.zendesk.com/api/v2/tickets'
-//STARTS HERE
-var url = 'https://amplitude.zendesk.com/api/v2/tickets.json';
-const auth = "Basic ZWRkaWUuZ2FvbmFAYW1wbGl0dWRlLmNvbS90b2tlbjo3QVdmdDBqZHRFZ1ByU1hIajVpTFNwS252NmwyYzVibXgycTVyY1FQ"
-const request = https.request(url, (response) => {
-    let data = '';
-    response.on('data', (chunk) => {
-        data = data + chunk.toString();
-    });
-  
-    response.on('end', () => {
-        const body = JSON.parse(data);
-        console.log(body);
-    });
-})
-  
-request.on('error', (error) => {
-    console.log('An error', error);
-});
-  
-request.end() 
-
-//ENDS HERE
 
 // http://expressjs.com/en/starter/basic-routing.html
 app.get('/', function(request, response) {
