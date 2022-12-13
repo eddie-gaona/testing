@@ -15,7 +15,7 @@ const createTicket = () => {
   var inputBody = JSON.stringify({
   "ticket": {
     "comment": {
-      "body": "Please submit and create a ticket"
+      "value": "Please submit and create a ticket"
     }
   }
 });
