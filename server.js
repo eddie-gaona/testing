@@ -11,9 +11,9 @@ app.use(express.static(__dirname));
 app.use(express.static('public'));
 
 const inputBody = JSON.stringify({
-  "ticket": {
-    "comment": {
-      "value": "<Error: Too many levels of nesting to fake this schema>"
+  ticket: {
+    comment: {
+      value: "<Error: Too many levels of nesting to fake this schema>"
     }
   }
 });
@@ -26,17 +26,17 @@ var options = {
     'Accept': '*/*',
     'Authorization': "Basic ZWRkaWUuZ2FvbmFAYW1wbGl0dWRlLmNvbS90b2tlbjo3QVdmdDBqZHRFZ1ByU1hIajVpTFNwS252NmwyYzVibXgycTVyY1FQ"
   },
-  body: JSON.stringify({ 
-    ticket: {}
-})};
+  body: inputBody
+};
 
+console.log(inputBody)
 //Zendesk API Create a Ticket
 const createTicket = () => {
-  let data = ''
+  let data = '';
 
   const request = https.request(options, (response) => {
     // Set the encoding, so we don't get log to the console a bunch of gibberish binary data
-    response.setEncoding('utf8');
+    //response.setEncoding('utf8');
 
     // As data starts streaming in, add each chunk to "data"
     response.on('data', (chunk) => {
