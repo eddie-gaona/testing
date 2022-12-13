@@ -3,6 +3,12 @@ const bodyParser = require('body-parser');
 const app = express();
 const https = require('https');
 
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+app.use(express.static(__dirname));
+
+// http://expressjs.com/en/starter/static-files.html
+app.use(express.static('public'));
 
 const inputBody = JSON.stringify({
   "ticket": {
@@ -21,10 +27,7 @@ var options = {
     'Authorization': "Basic ZWRkaWUuZ2FvbmFAYW1wbGl0dWRlLmNvbS90b2tlbjo3QVdmdDBqZHRFZ1ByU1hIajVpTFNwS252NmwyYzVibXgycTVyY1FQ"
   },
   body: JSON.stringify({ 
-    "ticket": {
-      "comment": {
-        "value": "<Error: Too many levels of nesting to fake this schema>"
-    }}
+    ticket: {}
 })};
 
 //Zendesk API Create a Ticket
@@ -79,13 +82,6 @@ request.on('error', (error) => {
 request.end() 
 
 //ENDS HERE
-
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
-app.use(express.static(__dirname));
-
-// http://expressjs.com/en/starter/static-files.html
-app.use(express.static('public'));
 
 // http://expressjs.com/en/starter/basic-routing.html
 app.get('/', function(request, response) {
