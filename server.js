@@ -97,7 +97,7 @@ app.post("/initialize", (request, response) => {
   });
 });
 
-const apiMethods = (getID) => {
+const getConvo = (getID) => {
 
 //console.log(getID); //Logs the ID of the conversation to the console
 
@@ -108,7 +108,7 @@ var options = {
   headers: {
     'Content-Type': 'application/json',
     'Accept': '*/*',
-    'Authorization': "Bearer dG9rOjViMWQ3YjM3X2U1NjFfNGFjZF9hOGIyX2U0MDI2ZTQ1YThkMDoxOjA="
+    'Authorization': "Bearer dG9rOjI3NWM0OTdkX2Q4ZGVfNGYyYV84NjMxXzBiMDAyYjEyMDE4MToxOjA="
   }
 };
   let data = '';
@@ -125,7 +125,6 @@ var options = {
     // The whole response has been received. Print out the result.
     response.on('end', () => {
       console.log(data);
-      return data;
     });
   });
   // Log errors if any occur
@@ -133,14 +132,82 @@ var options = {
       console.error(error);
   });
   // End the request
-  request.end  
+  request.end();
+  
+  //Zendesk API
+  
+  var dataInt = body;
+  var parsedJSON = JSON.parse(dataInt);
+
+  var dataInt2 = JSON.parse(JSON.stringify(parsedJSON.conversation_parts.conversation_parts));
+  let result;
+  for (var i = 0; i<dataInt2.length; ++i) {
+    if(dataInt2[i]["body"] == null) {
+      
+    } else {
+        //console.log(dataInt2[i]["body"])
+        result = dataInt2[0]["body"].concat(" ", dataInt2[i]["body"]);
+        //console.log(result);
+    }
+  }
+  let text = [parsedJSON.source.body];
+  for(var i = 0; i<dataInt2.length; ++i) {
+    text.push(dataInt2[i]["body"])
+  }
+  let msg = text.join(' ');
+
+
+var inputBody = {
+  "ticket": {
+    "requester": "eddie.gaona@amplitude.com",//parsedJSON.source.author.email
+    "comment": {
+      "html_body": msg
+    }
+  }
+};
+var options = {
+  hostname: 'amplitude.zendesk.com',
+  path: '/api/v2/tickets',
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+    'Authorization': "Basic ZWRkaWUuZ2FvbmFAYW1wbGl0dWRlLmNvbS90b2tlbjo3QVdmdDBqZHRFZ1ByU1hIajVpTFNwS252NmwyYzVibXgycTVyY1FQ"
+  }
+};
+
+//console.log(inputBody)
+  let data2 = '';
+
+  const request2 = https.request(options, (response) => {
+    // Set the encoding, so we don't get log to the console a bunch of gibberish binary data
+    response.setEncoding('utf8');
+
+    // As data starts streaming in, add each chunk to "data"
+    response.on('data', (chunk) => {
+      data += chunk;
+    });
+
+    // The whole response has been received. Print out the result.
+    response.on('end', () => {
+      console.log(data2);
+    });
+  });
+
+  // Log errors if any occur
+  request.on('error', (error) => {
+      console.error(error);
+  });
+  request.write(JSON.stringify(inputBody));
+  // End the request
+  request.end();
+  
 };
 
 app.post("/submit", (request, response) => {
   const body = request.body;
   //console.log(body)
-  apiMethods(body["conversation"]["id"]);
-  //console.log(body["conversation"]["id"])
+  getConvo(body["conversation"]["id"]);
+  //console.log(body["conversation"]["id"]
   response.send({
     canvas: {
       content: {
