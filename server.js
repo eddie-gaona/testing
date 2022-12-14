@@ -58,15 +58,14 @@ console.log(inputBody)
 
 
 const apiMethods = (intercomID) => {
-  console.log(intercomID); //records the Intercom conversation ID needed to pull conversation details using Retreive a Conversation endpoint
-  
+  console.log(intercomID);
   var options = {
   hostname: 'api.intercom.io',
   path: '/conversations/' + intercomID,
   method: 'GET',
   headers: {
     'Content-Type': 'application/json',
-    'Aceept': 'application/json',
+    'Accept': '*/*',
     'Authorization': "Bearer dG9rOjI3NWM0OTdkX2Q4ZGVfNGYyYV84NjMxXzBiMDAyYjEyMDE4MToxOjA="
   }
 };
@@ -91,7 +90,9 @@ const apiMethods = (intercomID) => {
       console.error(error);
   });
   // End the request
-  request.end();
+  request.end
+  var x;
+  return x = "Yes my name is Eddie"
 };
 
 
@@ -137,7 +138,7 @@ app.post("/initialize", (request, response) => {
 
 app.post("/submit", (request, response) => {
   const body = request.body;
-  console.log(body)
+  //console.log(body)
   apiMethods(body["conversation"]["id"]);
   //console.log(body["conversation"]["id"])
   response.send({
