@@ -11,7 +11,7 @@ app.use(express.static(__dirname));
 app.use(express.static('public'));
 
 //Zendesk API Create a Ticket
-const createTicket = () => {
+/*const createTicket = () => {
   var inputBody = {
   "ticket": {
     "comment": {
@@ -25,7 +25,6 @@ var options = {
   method: 'POST',
   headers: {
     'Content-Type': 'application/json',
-    'Accept': '*/*',
     'Authorization': "Basic ZWRkaWUuZ2FvbmFAYW1wbGl0dWRlLmNvbS90b2tlbjo3QVdmdDBqZHRFZ1ByU1hIajVpTFNwS252NmwyYzVibXgycTVyY1FQ"
   }
 };
@@ -55,7 +54,12 @@ console.log(inputBody)
   request.write(JSON.stringify(inputBody));
   // End the request
   request.end();
-};
+};*/
+
+
+const apiMethods = (intercomID) => {
+  
+}
 
 // http://expressjs.com/en/starter/basic-routing.html
 app.get('/', function(request, response) {
@@ -73,8 +77,6 @@ const listener = app.listen(process.env.PORT, () => {
 
 app.post("/initialize", (request, response) => {
   const body = request.body
-  console.log(body)
-  //console.log(body["conversation"]["id"])
   response.send({
     canvas: {
       content: {
@@ -100,8 +102,10 @@ app.post("/initialize", (request, response) => {
 });
 
 app.post("/submit", (request, response) => {
-  createTicket();
   const body = request.body;
+  console.log(body)
+  apiMethods(body["conversation"]["id"]);
+  //console.log(body["conversation"]["id"])
   response.send({
     canvas: {
       content: {
