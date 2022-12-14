@@ -57,45 +57,6 @@ console.log(inputBody)
 };*/
 
 
-const apiMethods = (intercomID) => {
-  console.log(intercomID);
-  var options = {
-  hostname: 'api.intercom.io',
-  path: '/conversations/' + intercomID,
-  method: 'GET',
-  headers: {
-    'Content-Type': 'application/json',
-    'Accept': '*/*',
-    'Authorization': "Bearer dG9rOjI3NWM0OTdkX2Q4ZGVfNGYyYV84NjMxXzBiMDAyYjEyMDE4MToxOjA="
-  }
-};
-  let data = '';
-
-  const request = https.request(options, (response) => {
-    // Set the encoding, so we don't get log to the console a bunch of gibberish binary data
-    response.setEncoding('utf8');
-
-    // As data starts streaming in, add each chunk to "data"
-    response.on('data', (chunk) => {
-      data += chunk;
-    });
-
-    // The whole response has been received. Print out the result.
-    response.on('end', () => {
-      console.log(data);
-    });
-  });
-  // Log errors if any occur
-  request.on('error', (error) => {
-      console.error(error);
-  });
-  // End the request
-  request.end
-  var x;
-  return x = "Yes my name is Eddie"
-};
-
-
 // http://expressjs.com/en/starter/basic-routing.html
 app.get('/', function(request, response) {
   response.sendFile(__dirname + '/views/index.html');
@@ -135,6 +96,45 @@ app.post("/initialize", (request, response) => {
     },
   });
 });
+
+const apiMethods = (getID) => {
+
+//console.log(getID); //Logs the ID of the conversation to the console
+
+var options = {
+  hostname: 'api.intercom.io',
+  path: '/conversations/' + getID,
+  method: 'GET',
+  headers: {
+    'Content-Type': 'application/json',
+    'Accept': '*/*',
+    'Authorization': "Bearer dG9rOjViMWQ3YjM3X2U1NjFfNGFjZF9hOGIyX2U0MDI2ZTQ1YThkMDoxOjA="
+  }
+};
+  let data = '';
+
+  const request = https.request(options, (response) => {
+    // Set the encoding, so we don't get log to the console a bunch of gibberish binary data
+    response.setEncoding('utf8');
+
+    // As data starts streaming in, add each chunk to "data"
+    response.on('data', (chunk) => {
+      data += chunk;
+    });
+
+    // The whole response has been received. Print out the result.
+    response.on('end', () => {
+      console.log(data);
+      return data;
+    });
+  });
+  // Log errors if any occur
+  request.on('error', (error) => {
+      console.error(error);
+  });
+  // End the request
+  request.end  
+};
 
 app.post("/submit", (request, response) => {
   const body = request.body;
