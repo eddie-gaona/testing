@@ -77,8 +77,8 @@ var options = {
 
     // The whole response has been received. Print out the result.
     response.on('end', () => {
-      console.log(data);
-      return data
+      //console.log(data);
+      return 5
     });
   });
   // Log errors if any occur
@@ -113,9 +113,10 @@ const myFunct = (getID) => {
 
     // The whole response has been received. Print out the result.
     response.on('end', () => {
-      console.log(data);
-      return data
+      //console.log(data);
+      return 5
     });
+    console.log(data);
   });
   // Log errors if any occur
   request.on('error', (error) => {
@@ -126,10 +127,14 @@ const myFunct = (getID) => {
 }
 
 app.post("/submit", (request, response, next) => {
+  next();
   const body = request.body;
+  next();
   var x = getConvo(body['conversation']['id']);
-  var y = myFunct(body['conversation']['id'])
-  console.log(y)
+  next();
+  var y = myFunct(body['conversation']['id']);
+  next();
+  console.log(x);
   response.send({
     canvas: {
       content: {
