@@ -51,19 +51,19 @@ app.post("/initialize", (request, response) => {
   });
 });
 
-function myFunc() {
-  return "Eddie is working on this"
+const func = () => {
+  return "Hello World"
 }
 
-
-app.post("/submit", (request, response) => {
+app.post("/submit", (request, response, next) => {
   const body = request.body;
-  myFunc();
+  var x = func();
+  next();
   response.send({
     canvas: {
       content: {
         components: [
-          { type: "text", text: "Ticket Submitted",
+          { type: "text", text: x,
            style: "header", align: "center" },
         ],
               },
