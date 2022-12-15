@@ -61,14 +61,6 @@ const createTicket = (dataIntercom, getID) => {
   var parsedJSON = JSON.parse(dataInt);
 
   var dataInt2 = JSON.parse(JSON.stringify(parsedJSON.conversation_parts.conversation_parts));
-  let result;
-  for (var i = 0; i<dataInt2.length; ++i) {
-    if(dataInt2[i]["body"] == null) {
-      
-    } else {
-        //result = dataInt2[0]["body"].concat(" ", dataInt2[i]["body"]);
-    }
-  }
   let text = [parsedJSON.source.body];
   for(var i = 0; i<dataInt2.length; ++i) {
     text.push(dataInt2[i]["body"])
