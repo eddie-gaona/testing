@@ -70,7 +70,7 @@ const createTicket = (dataIntercom, getID) => {
 
 var inputBody = {
   "ticket": {
-    "requester": "eddie.gaona@amplitude.com",//parsedJSON.source.author.email,
+    "requester": parsedJSON.source.author.email,
     "comment": {
       "html_body": msg
     }
