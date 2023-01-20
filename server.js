@@ -72,7 +72,7 @@ var inputBody = {
   "ticket": {
     "requester": parsedJSON.source.author.email,
     "comment": {
-      "html_body": msg
+      "html_body": msg + "Link to Intercom Chat: https://app.intercom.com/a/apps/r3jskhu8/inbox/inbox/5112554/conversations/" + getID
     }
   }
 };
