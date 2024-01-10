@@ -165,11 +165,11 @@ const internalComment = (dataZen, getID) => {
 
 // http://expressjs.com/en/starter/basic-routing.html
 app.get('/', function(request, response) {
-  response.sendFile(__dirname + '/views/index.html');
+  response.sendFile(__dirname + '/index.html');
 });
 
 app.get('/', function (request, response,html) {
-  console.log(response.sendFile(__dirname+'/views/index.html'));
+  console.log(response.sendFile(__dirname+'/index.html'));
 });
 
 const listener = app.listen(process.env.PORT, () => {
